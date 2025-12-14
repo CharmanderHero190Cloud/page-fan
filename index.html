@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -94,18 +94,33 @@ nav {
     background: var(--nav-bg);
     backdrop-filter: blur(8px);
     box-shadow:0 0 20px rgba(255,140,0,0.2);
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    position: relative;
 }
 
-nav a {
-    color: var(--text);
-    text-decoration:none;
-    margin:0 14px;
-    font-weight:bold;
-    transition: text-shadow 0.4s ease;
+nav .nav-item {
+    position: relative;
 }
 
-nav a:hover {
-    text-shadow:0 0 12px orange,0 0 24px red;
+/* Menu info panels */
+.menu-info {
+    position: absolute;
+    bottom:-50px;
+    left:50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px orange;
+    font-size: 14px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    z-index: 1000;
 }
 
 /* Sections */
@@ -223,9 +238,18 @@ body.void { background:#000; color:#000; }
 </header>
 
 <nav>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#links">Links</a>
+    <div class="nav-item">
+        <a href="#about">About</a>
+        <div class="menu-info">Learn about CharmanderHero190 and projects 😎</div>
+    </div>
+    <div class="nav-item">
+        <a href="#gallery">Gallery</a>
+        <div class="menu-info">Check out epic fan images 🔥</div>
+    </div>
+    <div class="nav-item">
+        <a href="#links">Links</a>
+        <div class="menu-info">Visit GitHub, YouTube, and more 🌟</div>
+    </div>
 </nav>
 
 <section id="about" class="section">
@@ -294,6 +318,23 @@ function spawnParticles(){
     setTimeout(()=>particle.remove(),duration);
 }
 setInterval(spawnParticles,150);
+
+/* NAV HOVER INFO WITH DELAY */
+document.querySelectorAll('nav .nav-item').forEach(item=>{
+    let timer;
+    const panel = item.querySelector('.menu-info');
+    item.addEventListener('mouseenter', ()=>{
+        timer = setTimeout(()=> {
+            panel.style.opacity = '1';
+            panel.style.transform = 'translateX(-50%) translateY(0)';
+        }, 2000); // 2 seconds delay
+    });
+    item.addEventListener('mouseleave', ()=>{
+        clearTimeout(timer);
+        panel.style.opacity = '0';
+        panel.style.transform = 'translateX(-50%) translateY(10px)';
+    });
+});
 </script>
 
 </body>
