@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CharmanderHero190 Fan Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-main: linear-gradient(135deg,#ff7a00,#ff4500);
+    --topbar: linear-gradient(90deg,#b34700,#ff7a00);
+    --text:#fff;
+    --nav-bg: rgba(0,0,0,0.25);
+}
+
+body.dark {
+    --bg-main: linear-gradient(135deg,#0f0f0f,#1e1e1e);
+    --topbar: linear-gradient(90deg,#000,#222);
+    --text:#f0f0f0;
+    --nav-bg: rgba(255,255,255,0.08);
+}
+
+body.light {
+    --bg-main: linear-gradient(135deg,#fff,#f0f0f0);
+    --topbar: linear-gradient(90deg,#ffb347,#ffcc80);
+    --text:#222;
+    --nav-bg: rgba(0,0,0,0.08);
+}
+
+body.retro {
+    --bg-main:#111;
+    --topbar:#222;
+    --text:#0f0;
+    --nav-bg: rgba(0,0,0,0.15);
+}
+
+body.void {
+    --bg-main:#000;
+    --topbar:#111;
+    --text:#fff;
+    --nav-bg: rgba(0,0,0,0.2);
+}
+
+/* Base */
+body {
+    margin:0;
+    font-family:'Roboto',sans-serif;
+    background: var(--bg-main);
+    color: var(--text);
+    transition: background 0.5s ease, color 0.5s ease;
+    overflow-x:hidden;
+    position: relative;
+}
+
+/* Top bar */
+header {
+    background: var(--topbar);
+    padding: 18px 20px;
+    text-align:center;
+    font-family:'Press Start 2P',cursive;
+    font-size:20px;
+    color: var(--text);
+    box-shadow:0 0 30px rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    position: relative;
+}
+
+/* Dropdown */
+.theme-select {
+    position:absolute;
+    left:20px;
+    top:18px;
+    background: rgba(0,0,0,0.3);
+    color:#fff;
+    border:none;
+    padding:8px 12px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+    outline:none;
+    transition:0.3s;
+}
+
+body.light .theme-select {
+    background: rgba(255,255,255,0.85);
+    color:#222;
+}
+
+/* Nav */
+nav {
+    text-align:center;
+    padding:14px 0;
+    background: var(--nav-bg);
+    backdrop-filter: blur(8px);
+    box-shadow:0 0 20px rgba(255,140,0,0.2);
+}
+
+nav a {
+    color: var(--text);
+    text-decoration:none;
+    margin:0 14px;
+    font-weight:bold;
+    transition: text-shadow 0.4s ease;
+}
+
+nav a:hover {
+    text-shadow:0 0 12px orange,0 0 24px red;
+}
+
+/* Sections */
+.section {
+    padding:50px 20px;
+    text-align:center;
+    animation: fadeIn 1s ease;
+    position: relative;
+}
+
+@keyframes fadeIn { from {opacity:0; transform:translateY(12px);} to {opacity:1; transform:translateY(0);} }
+
+/* Gallery */
+.gallery {
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    flex-wrap:wrap;
+}
+
+.gallery img {
+    width:280px;
+    max-width:90%;
+    border-radius:20px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.1) rotate(-2deg);
+    filter: drop-shadow(0 0 20px orange) drop-shadow(0 0 40px red);
+}
+
+/* Footer */
+footer {
+    text-align:center;
+    padding:20px;
+    background: rgba(0,0,0,0.3);
+    font-size:14px;
+    text-shadow:0 0 8px orange;
+}
+
+/* Mouse fire */
+.fire {
+    position:absolute;
+    width:12px;
+    height:12px;
+    background: radial-gradient(circle,#ffeb3b,#ff9800,#ff0000);
+    border-radius:50%;
+    pointer-events:none;
+    animation: fireMove 0.7s linear forwards;
+    z-index:9999;
+}
+
+@keyframes fireMove {
+    0% { transform: scale(1) translateY(0); opacity:1; }
+    100% { transform: scale(0) translateY(-25px); opacity:0; }
+}
+
+/* Click explosion */
+.explosion {
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background: radial-gradient(circle,#fffc00,#ff6600,#ff0000);
+    pointer-events:none;
+    animation: explode 0.5s forwards;
+    z-index:9999;
+}
+@keyframes explode {
+    0% { transform:scale(1); opacity:1;}
+    100% { transform:scale(3) rotate(360deg); opacity:0;}
+}
+
+/* Retro pixel */
+body.retro {
+    font-family:'Press Start 2P', monospace;
+    filter: contrast(1.5) saturate(1.6);
+}
+body.retro .gallery img { filter: brightness(1.2) saturate(2); }
+body.retro nav { box-shadow:0 0 20px #0f0; }
+
+/* Black void */
+body.void { background:#000; color:#000; }
+
+/* Floating particles */
+.particle {
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background: rgba(255,140,0,0.7);
+    pointer-events:none;
+    animation: particleMove linear forwards;
+}
+
+@keyframes particleMove {
+    0% { transform: translateY(0) scale(1); opacity:1; }
+    100% { transform: translateY(-150px) scale(0); opacity:0; }
+}
+</style>
+</head>
+
+<body class="classic">
+
+<header>
+    CharmanderHero190 Fan Page
+    <select class="theme-select" onchange="setTheme(this.value)">
+        <option value="classic">🔥 Classic</option>
+        <option value="dark">🌙 Dark</option>
+        <option value="light">☀️ Light</option>
+        <option value="retro">🟩 Retro Pixel</option>
+        <option value="void">⚫ Black Void</option>
+    </select>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#links">Links</a>
+</nav>
+
+<section id="about" class="section">
+    <h2>About Me</h2>
+    <p>I'm <strong>CharmanderHero190</strong> 😎. I love coding, creating, and making epic things.</p>
+</section>
+
+<section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="gallery">
+        <img src="https://i.ibb.co/RpDwWhSM/image1.png" alt="Image 1">
+        <img src="https://i.ibb.co/cc4mm5wC/image2.png" alt="Image 2">
+        <img src="https://i.ibb.co/3mMcbWHB/image3.png" alt="Image 3">
+    </div>
+</section>
+
+<section id="links" class="section">
+    <h2>Links</h2>
+    <p>
+        <a class="link" href="https://github.com/CharmanderHero190Cloud" target="_blank">GitHub</a> |
+        <a class="link" href="https://www.youtube.com/@CharmanderHero190" target="_blank">YouTube</a>
+    </p>
+</section>
+
+<footer>Made with ❤️🔥 by CharmanderHero190</footer>
+
+<script>
+const dropdown = document.querySelector('.theme-select');
+
+/* THEME SWITCH */
+function setTheme(mode){
+    document.body.className = mode;
+}
+
+/* FIRE MOUSE TRAIL */
+document.addEventListener("mousemove", e=>{
+    const fire=document.createElement("div");
+    fire.className="fire";
+    fire.style.left=e.pageX+"px";
+    fire.style.top=e.pageY+"px";
+    document.body.appendChild(fire);
+    setTimeout(()=>fire.remove(),700);
+});
+
+/* CLICK EXPLOSION */
+document.addEventListener("click", e=>{
+    const explosion=document.createElement("div");
+    explosion.className="explosion";
+    explosion.style.left=e.pageX+"px";
+    explosion.style.top=e.pageY+"px";
+    document.body.appendChild(explosion);
+    setTimeout(()=>explosion.remove(),500);
+});
+
+/* FLOATING PARTICLES */
+function spawnParticles(){
+    const particle=document.createElement("div");
+    particle.className="particle";
+    particle.style.left=Math.random()*window.innerWidth+"px";
+    particle.style.top=window.innerHeight+"px";
+    particle.style.width=(4+Math.random()*6)+"px";
+    particle.style.height=particle.style.width;
+    document.body.appendChild(particle);
+    const duration = 2000+Math.random()*2000;
+    particle.style.animationDuration=duration+"ms";
+    setTimeout(()=>particle.remove(),duration);
+}
+setInterval(spawnParticles,150);
+</script>
+
+</body>
+</html>
